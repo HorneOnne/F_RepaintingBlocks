@@ -235,7 +235,7 @@ namespace RepaintingBlocks
                         ClearGridValue(x, y - 1);
                         SpawnBall(x, y, ColorBall.ColorType.EMPTY);
 
-                        ball.BallMoveOnGrid.Move(x, y - 1, 0.1f);
+                        ball.BallMoveOnGrid.Move(x, y - 1, 0.2f);
                         _gridMap.SetValue(x, y - 1, ball);
 
 
