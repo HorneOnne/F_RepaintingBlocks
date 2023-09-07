@@ -40,6 +40,19 @@ namespace RepaintingBlocks
             DontDestroyOnLoad(this.gameObject);
         }
 
+
+        public void ResetScore()
+        {
+            _score = 0;
+        }
+
+
+        public void ScoreUp()
+        {
+            _score++;
+            OnScoreUp?.Invoke();
+        }
+
         public void SetRecord(int score)
         {
             if (_record < score)

@@ -51,7 +51,7 @@ namespace RepaintingBlocks
             _soundTimerDictionary = new Dictionary<SoundType, float>();
             _soundTimerDictionary[SoundType.HitBlock] = 0.0f;
             _soundTimerDictionary[SoundType.HitWall] = 0.0f;
-            _soundTimerDictionary[SoundType.HitKey] = 0.0f;
+            _soundTimerDictionary[SoundType.Swap] = 0.0f;
             _soundTimerDictionary[SoundType.GameOver] = 0.0f;
             _soundTimerDictionary[SoundType.Win] = 0.0f;
             _soundTimerDictionary[SoundType.Button] = 0.0f;
@@ -162,7 +162,7 @@ namespace RepaintingBlocks
             {
                 case SoundType.HitBlock:
                     return CanSoundTypePlay(soundType, 0.01f);
-                case SoundType.HitKey:
+                case SoundType.Swap:
                     return CanSoundTypePlay(soundType, 0.01f);
                 case SoundType.HitWall:
                     return CanSoundTypePlay(soundType, 0.01f);
@@ -269,7 +269,7 @@ namespace RepaintingBlocks
         Wait,
         HitBlock,
         HitWall,
-        HitKey,
+        Swap,
         ScoreUp,
         GameOver,
         Win,

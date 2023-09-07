@@ -10,8 +10,6 @@ namespace RepaintingBlocks
         public static event System.Action OnPlaying;
         public static event System.Action OnWin;
         public static event System.Action OnGameOver;
-        public static event System.Action OnRoundFinished;
-        public static event System.Action OnStartNextRound;
 
         public enum GameState
         {
@@ -39,6 +37,7 @@ namespace RepaintingBlocks
         private void Awake()
         {
             Instance = this;
+            GameManager.Instance.ResetScore();
 
         }
 
@@ -55,6 +54,7 @@ namespace RepaintingBlocks
         private void Start()
         {
             ChangeGameState(GameState.PLAYING);
+           
         }
         #endregion
 
@@ -81,22 +81,21 @@ namespace RepaintingBlocks
             switch (_currentState)
             {
                 default: break;
-                case GameState.PLAYING:
-
-                    OnPlaying?.Invoke();
-                    break;
                 case GameState.WAITING:
 
 
                     break;
-      
+                case GameState.PLAYING:
+
+                    OnPlaying?.Invoke();
+                    break;              
                 case GameState.WIN:
 
 
                     OnWin?.Invoke();
                     break;
                 case GameState.GAMEOVER:
-       
+                    GameManager.Instance.SetRecord(GameManager.Instance.Score);
                     StartCoroutine(Utilities.WaitAfter(0.5f, () =>
                     {
                         SoundManager.Instance.PlaySound(SoundType.GameOver, false);

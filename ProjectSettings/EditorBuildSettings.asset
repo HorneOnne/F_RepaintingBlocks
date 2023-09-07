@@ -12,4 +12,6 @@ EditorBuildSettings:
     path: Assets/RepaintingBlocks/Scenes/GameplayScene.unity
     guid: 3fc8acdd13e6c734bafef6554d6fdbcd
   m_configObjects:
+    com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 452dc017b11c42e49a52fd9eb2bed06e, type: 2}
+    com.unity.adaptiveperformance.samsung.android.provider_settings: {fileID: 11400000, guid: dddcb80a68287d240bba497272c4c335, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: e21b9a56323e6d44b9c824193705a197, type: 2}

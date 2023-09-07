@@ -2898,6 +2898,18 @@ MonoBehaviour:
   - soundType: 7
     audioClips:
     - {fileID: 8300000, guid: 24ac573419d288f45a8e17181e7d90dd, type: 3}
+  - soundType: 8
+    audioClips:
+    - {fileID: 8300000, guid: 2dc67deea64957a4a86de12e61636158, type: 3}
+  - soundType: 4
+    audioClips:
+    - {fileID: 8300000, guid: 889bd7fc5e1d5d9429e27459d3432461, type: 3}
+  - soundType: 5
+    audioClips:
+    - {fileID: 8300000, guid: e4e545a7cab75c84dbb160641783f106, type: 3}
+  - soundType: 3
+    audioClips:
+    - {fileID: 8300000, guid: 4a665349a2e62a64ca1c87301ad0fae9, type: 3}
   SFXVolume: 1
   BackgroundSoundClip: {fileID: 8300000, guid: 25f4d7b115620f645a16bbc67ab40d37, type: 3}
   BackgroundVolume: 1

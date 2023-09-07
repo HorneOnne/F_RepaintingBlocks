@@ -12,19 +12,20 @@ namespace RepaintingBlocks
         [Header("Texts")]
         [SerializeField] private TextMeshProUGUI _pauseBtnText;
         [SerializeField] private TextMeshProUGUI _scoreText;
+        [SerializeField] private TextMeshProUGUI _recordText;
 
 
 
         private void OnEnable()
         {
             LanguageManager.OnLanguageChanged += LoadLanguague;
-            GameplayManager.OnStartNextRound += LoadScoreText;
+            GameManager.OnScoreUp += LoadScoreText;
         }
 
         private void OnDisable()
         {
             LanguageManager.OnLanguageChanged -= LoadLanguague;
-            GameplayManager.OnStartNextRound -= LoadScoreText;
+            GameManager.OnScoreUp -= LoadScoreText;
         }
 
 
@@ -32,6 +33,7 @@ namespace RepaintingBlocks
         {
             LoadLanguague();
             LoadScoreText();
+            LoadRecordText();
 
             _pauseBtn.onClick.AddListener(() =>
             {
@@ -54,12 +56,20 @@ namespace RepaintingBlocks
 
         private void LoadLanguague()
         {
-            _pauseBtnText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "PAUSE");
+
+            _pauseBtnText.text = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "pause");
         }
 
         private void LoadScoreText()
         {
-       
+            string scoreString = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "score");
+            _scoreText.text = $"{scoreString} {GameManager.Instance.Score}";
+        }
+
+        private void LoadRecordText()
+        {
+            string recordString = LanguageManager.Instance.GetWord(LanguageManager.Instance.CurrentLanguague, "best");
+            _recordText.text = $"{recordString} {GameManager.Instance.Record}";
         }
     }
 }

@@ -69,6 +69,8 @@ namespace RepaintingBlocks
 
                 _currentShootBall.ColorBall.SetColor(_nextShootBall.ColorBall.BallColorType);
                 _nextShootBall.ColorBall.SetColor(Utilities.GetRandomEnumFromToMax<ColorBall.ColorType>(1));
+
+                SoundManager.Instance.PlaySound(SoundType.Shoot, false);
             }
         }
 
@@ -100,6 +102,8 @@ namespace RepaintingBlocks
         {
             SwapBall();
             StartCoroutine(Rotate180Degrees());
+
+            SoundManager.Instance.PlaySound(SoundType.Swap, false);
         }
 
 

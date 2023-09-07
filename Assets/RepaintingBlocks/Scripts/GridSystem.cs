@@ -25,6 +25,7 @@ namespace RepaintingBlocks
         private float _timeCounter = 0.0f;
         private float _timeFillMinSpawnRow = 1.0f;
         private float _timeFillMinCounter = 0.0f;
+        private bool _initWhenStart = false;
 
         #region Properites
         public Grid<Ball> GridMap { get => _gridMap; }
@@ -63,15 +64,15 @@ namespace RepaintingBlocks
                 }
             }
 
-            FillRows(3);
-            //StartCoroutine(PerformFillAllGrid(0.1f, null));
+            StartCoroutine(PerformFillRows(4));
         }
 
 
 
         private void Update()
-        {         
-            if (Time.time - _timeFillMinCounter > _timeFillMinSpawnRow)
+        {
+            if (GameplayManager.Instance.CurrentState != GameplayManager.GameState.PLAYING) return;
+            if (Time.time - _timeFillMinCounter > _timeFillMinSpawnRow && _initWhenStart == true)
             {
                 _timeFillMinCounter = Time.time;
 
@@ -91,7 +92,7 @@ namespace RepaintingBlocks
 
                 if (isFull)
                 {
-                    Debug.Log("Game over");
+                    GameplayManager.Instance.ChangeGameState(GameplayManager.GameState.GAMEOVER);
                 }
 
             }
@@ -127,8 +128,10 @@ namespace RepaintingBlocks
 
                 if (isFillInRow == true)
                 {
-                    Debug.Log($"Fill In Row {y}");
+                    GameManager.Instance.ScoreUp();
                     RemoveRows(y);
+
+                    SoundManager.Instance.PlaySound(SoundType.ScoreUp, false);
                 }
             }
         }
@@ -150,6 +153,23 @@ namespace RepaintingBlocks
         {
             RemoveRowWasFill();
             MoveBallsDown();
+        }
+
+
+        private IEnumerator PerformFillRows(int numRows)
+        {
+            if (numRows > 0 && numRows < _height)
+            {
+                for (int i = 0; i < numRows; i++)
+                {
+                    FillHorizontal();
+                    MoveBallsDown();
+
+                    yield return new WaitForSeconds(0.2f);
+                }
+            }
+
+            _initWhenStart = true;
         }
 
         private void FillRows(int numRows)
